@@ -1,65 +1,138 @@
+/* Жалпы негиз */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Montserrat', sans-serif; /* Заманбап шрифт */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Көздү чарчатпаган градиент */
     margin: 0;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
 }
 
+/* Контейнер - мобилдик телефондун экраны сыяктуу */
 .app-container {
-    max-width: 500px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 420px;
+    background: #f8f9fa;
+    min-height: 100vh;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
+/* Хедер - ачык жана заманбап */
 header {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+    padding: 30px 20px;
     text-align: center;
-    color: #2c3e50;
-    margin-bottom: 20px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Издөө кутучасы */
+.search-box {
+    padding: 20px;
+    margin-top: -25px; /* Хедерге бир аз кирип турат */
 }
 
 .search-box input {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
     outline: none;
-    transition: 0.3s;
+    font-size: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .search-box input:focus {
-    border-color: #3498db;
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
+/* Маршруттар тизмеси */
 .route-list {
-    margin-top: 20px;
+    padding: 15px;
+    flex-grow: 1;
 }
 
+/* Маршрут карточкалары */
 .route-card {
     background: white;
-    padding: 15px;
-    border-radius: 10px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    padding: 18px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Сол жактагы кооз сызык */
+.route-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    background: #007bff;
 }
 
 .route-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .route-card h3 {
     margin: 0;
-    color: #e67e22;
+    color: #007bff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .route-card p {
-    margin: 8px 0;
-    color: #34495e;
-    font-weight: 500;
+    margin: 10px 0;
+    color: #444;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 .route-card span {
-    font-size: 0.9em;
-    color: #7f8c8d;
+    font-size: 13px;
+    color: #888;
+    background: #f0f2f5;
+    padding: 4px 10px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+/* Анимация кошуп койсок сонун болот */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.route-card {
+    animation: fadeIn 0.4s ease forwards;
 }
