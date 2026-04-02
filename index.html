@@ -4,7 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ош Транспорт - Маршруттар</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Стилдери - Дизайн ушул жерде */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #007bff;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .search-box {
+            padding: 20px;
+            margin-top: -30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .route-list {
+            padding: 10px 20px;
+        }
+
+        .route-card {
+            background: #fff;
+            border-left: 6px solid #007bff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .route-card:hover {
+            transform: scale(1.02);
+        }
+
+        .route-card h3 {
+            margin: 0 0 8px 0;
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        .route-card p {
+            margin: 5px 0;
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .route-card span {
+            font-size: 13px;
+            color: #777;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,13 +109,49 @@
         </header>
 
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Маршрутту же багытты издеңиз..." onkeyup="searchRoute()">
+            <input type="text" id="searchInput" placeholder="Маршрут же багытты издеңиз..." onkeyup="searchRoute()">
         </div>
 
         <div id="routeList" class="route-list">
             </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // JavaScript - Маршруттардын маалыматы жана издөө функциясы
+        const routes = [
+            { number: "105", path: "ХБК — Текстиль", time: "06:40 - 21:00" },
+            { number: "107", path: "Ак-Тилек — Төлөйкөн", time: "07:00 - 20:30" },
+            { number: "142", path: "Фуркат — Манас-Ата (Достук)", time: "07:00 - 21:00" },
+            { number: "113", path: "Кеңеш — Юго-Восток", time: "07:15 - 20:00" },
+            { number: "122", path: "Анар — Он-Адыр", time: "07:00 - 20:40" }
+        ];
+
+        function displayRoutes(data) {
+            const list = document.getElementById('routeList');
+            list.innerHTML = ""; // Тизмени тазалоо
+            
+            data.forEach(route => {
+                list.innerHTML += `
+                    <div class="route-card">
+                        <h3>№ ${route.number}</h3>
+                        <p>Багыты: ${route.path}</p>
+                        <span>График: ${route.time}</span>
+                    </div>
+                `;
+            });
+        }
+
+        function searchRoute() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = routes.filter(r => 
+                r.number.includes(query) || r.path.toLowerCase().includes(query)
+            );
+            displayRoutes(filtered);
+        }
+
+        // Баракча жүктөлгөндө баарын чыгаруу
+        displayRoutes(routes);
+    </script>
+
 </body>
 </html>
